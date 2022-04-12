@@ -30,8 +30,8 @@ test("Clicking checkbox disables/enables the submit button", async () => {
 });
 
 test("popover appears on hover", async () => {
-  render(<SummaryForm />);
   const user = userEvent.setup();
+  render(<SummaryForm />);
 
   const nullPopover = screen.queryByText(/the tnc/i);
 
@@ -46,6 +46,6 @@ test("popover appears on hover", async () => {
   expect(popover).toBeInTheDocument();
   await user.unhover(termsAndConditions);
 
-  const nullPopoverAgain = screen.queryByText(/the tnc/i);
+  const nullPopoverAgain = screen.queryByTestId("popover-basic");
   expect(nullPopoverAgain).not.toBeInTheDocument();
 });
