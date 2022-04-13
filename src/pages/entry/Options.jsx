@@ -6,6 +6,7 @@ import ToppingOptions from "./ToppingOptions";
 import AlertBanner from "../common/AlertBanner";
 import { pricePerItem } from "../../constants";
 import { useOrderDetails } from "../../contexts/OrderDetails";
+import convertValToCurrency from "../../utils/CurrencyConvert";
 
 function Options({ optionType }) {
   const [items, setItems] = useState([]);
@@ -17,8 +18,6 @@ function Options({ optionType }) {
       .get(`http://localhost:3030/${optionType}`)
       .then((response) => setItems(response.data))
       .catch((error) => {
-        //TODO: handle error response
-        // console.log(error);
         setErrors(!errors);
       });
   }, [optionType]);
@@ -40,10 +39,12 @@ function Options({ optionType }) {
       }
     />
   ));
+
+  const value = convertValToCurrency(pricePerItem[optionType]);
   return (
     <>
       <h2>{title}</h2>
-      <p>{pricePerItem[optionType]} each</p>
+      <p>{value} each</p>
       <p>
         {title} total: {orderDetails.totals[optionType]}
       </p>

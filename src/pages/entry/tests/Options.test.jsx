@@ -9,7 +9,7 @@ test("displays image for each scoop from server", async () => {
   expect(scoopImages).toHaveLength(2);
 
   const altText = scoopImages.map((element) => element.alt);
-  expect(altText).toEqual(["Chocolate scoop", "Vanila scoop"]);
+  expect(altText).toEqual(["Chocolate scoop", "Vanilla scoop"]);
 });
 
 test("display image for each topping from server", async () => {

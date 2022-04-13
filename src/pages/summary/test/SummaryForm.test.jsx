@@ -1,4 +1,8 @@
-import { render, screen } from "@testing-library/react";
+import {
+  render,
+  screen,
+  waitForElementToBeRemoved,
+} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import SummaryForm from "../SummaryForm";
 
@@ -34,18 +38,16 @@ test("popover appears on hover", async () => {
   render(<SummaryForm />);
 
   const nullPopover = screen.queryByText(/the tnc/i);
-
-  // initial state
   expect(nullPopover).not.toBeInTheDocument();
 
+  // popover appears upon mouseover of checkbox label
   const termsAndConditions = screen.getByText(/terms and conditions/i);
   await user.hover(termsAndConditions);
 
-  const popover = screen.queryByText(/the tnc/i);
-
+  const popover = screen.getByText(/the tnc/i);
   expect(popover).toBeInTheDocument();
-  await user.unhover(termsAndConditions);
 
-  const nullPopoverAgain = screen.queryByTestId("popover-basic");
-  expect(nullPopoverAgain).not.toBeInTheDocument();
+  // popover disappears when we mouse out
+  await user.unhover(termsAndConditions);
+  await waitForElementToBeRemoved(() => screen.queryByText(/the tnc/i));
 });
