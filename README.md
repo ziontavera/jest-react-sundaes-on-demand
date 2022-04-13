@@ -1,7 +1,7 @@
 # Description:
 ## Title: Sundaes on demand
 
-- A Jest-React application that allows user to order custom Sundaes
+- A Jest-React tutorial course that allows user to order custom Sundaes
 - Mainly focused on Jest principles
 - Used Jest and testing-libraries
 
@@ -13,6 +13,9 @@ In the project directory, you can run:
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
+Also make sure to pull from : https://github.com/bonnie/udemy-TESTING-LIBRARY/tree/main/sundae-server
+to have the backend server running
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
