@@ -3,7 +3,7 @@ import OrderEntry from "../OrderEntry";
 import { rest } from "msw";
 import { server } from "../../../mocks/server";
 import React from "react";
-import { OrderDetailsProvider } from "../../../contexts/OrderDetails";
+// import { OrderDetailsProvider } from "../../../contexts/OrderDetails";
 
 test("handle error for scoops and toppings routes", async () => {
   server.resetHandlers(
@@ -15,7 +15,7 @@ test("handle error for scoops and toppings routes", async () => {
     )
   );
 
-  render(<OrderEntry />, { wrapper: OrderDetailsProvider });
+  render(<OrderEntry setOrderPhase={jest.fn()} />);
 
   const alerts = await screen.findAllByRole("alert");
 

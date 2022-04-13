@@ -54,7 +54,14 @@ export function OrderDetailsProvider(props) {
       setOptionCount(newOptionCount);
     }
 
-    return [{ ...optionCount, totals }, updateItemCount];
+    function resetOrder() {
+      setOptionCount({
+        scoops: new Map(),
+        toppings: new Map(),
+      });
+    }
+
+    return [{ ...optionCount, totals }, updateItemCount, resetOrder];
   }, [optionCount, totals]);
   return <OrderDetails.Provider value={value} {...props} />;
 }

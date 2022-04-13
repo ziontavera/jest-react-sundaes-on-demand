@@ -4,9 +4,14 @@ import Button from "react-bootstrap/Button";
 import Popover from "react-bootstrap/Popover";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
-function SummaryForm() {
+function SummaryForm({ setOrderPhase }) {
   const [checked, setChecked] = useState(false);
 
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    setOrderPhase("finished");
+  }
   const popover = (
     <Popover id="popover-basic">
       <Popover.Body>The TNC</Popover.Body>
@@ -23,7 +28,7 @@ function SummaryForm() {
 
   return (
     <>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Form.Group controlId="terms-and-conditions">
           <Form.Check
             type="checkbox"
@@ -32,7 +37,11 @@ function SummaryForm() {
             label={termsAndConditions}
           />
         </Form.Group>
-        <Button variant="primary" type="submit" disabled={!checked}>
+        <Button
+          variant={checked ? "primary" : "secondary"}
+          type="submit"
+          disabled={!checked}
+        >
           Submit Order
         </Button>
       </Form>
